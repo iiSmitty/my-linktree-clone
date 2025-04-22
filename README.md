@@ -77,7 +77,8 @@ This site is automatically deployed to [GitHub Pages](https://pages.github.com/)
 
 ## 🙏 Inspiration & Credits
 
-The visual design and core layout concept were heavily inspired by the clean, retro aesthetic of [MarioDev's personal site](https://mariodev.xyz/). Special thanks to Mario for the great design!
+The visual design and core layout concept were heavily inspired by the clean, retro aesthetic of  
+[MarioDev's personal site](https://mariodev.xyz/). Special thanks to Mario for the great design!
 
 ## 📄 License
 
