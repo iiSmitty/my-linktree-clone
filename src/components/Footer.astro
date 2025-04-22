@@ -1,0 +1,109 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div
+    class="social-icons"
+    style="margin-bottom: 0.5rem; display: flex; justify-content: center; gap: 1rem;"
+  >
+    <a
+      href="https://github.com/iiSmitty"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="GitHub"
+    >
+      <img src="/icons/github.svg" alt="GitHub Icon" class="social-icon-img" />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/andrezsmit/"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="LinkedIn"
+    >
+      <img
+        src="/icons/linkedin.svg"
+        alt="LinkedIn Icon"
+        class="social-icon-img"
+      />
+    </a>
+  </div>
+  <div class="copyright-text">
+    © {currentYear}. If you can read this, thank a dev.
+  </div>
+</footer>
+
+<style>
+  html[data-theme="dark"] .social-icon-img {
+    /* Invert the color (black becomes white) and adjust brightness/contrast */
+    filter: invert(92%) sepia(6%) saturate(88%) hue-rotate(190deg)
+      brightness(99%) contrast(90%);
+    /* Example filter to turn black into roughly #e8e8e8 - Needs tuning! */
+    /* You can use online tools to convert hex codes to CSS filters */
+    opacity: 1; /* Ensure full opacity if using filter */
+  }
+  html[data-theme="dark"] .social-icons a:hover .social-icon-img {
+    /* Slightly reduce brightness on hover maybe? */
+    filter: invert(92%) sepia(6%) saturate(88%) hue-rotate(190deg)
+      brightness(85%) contrast(90%);
+  }
+
+  /* Apply theme variables to the footer container */
+  footer {
+    padding: 0.75rem 1rem; /* Moved padding here from parent */
+    border-top: var(--border-default); /* Use variable */
+    background-color: var(--color-container-bg); /* Use variable */
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--color-text-muted); /* Use variable */
+  }
+
+  /* --- Icon Styles --- */
+  .social-icon-img {
+    /* Default icon size */
+    width: 24px;
+    height: 24px;
+    vertical-align: middle; /* Align nicely with text baseline if needed */
+    display: inline-block; /* Ensure dimensions are respected */
+    transition: opacity 0.2s ease; /* Smooth transition for hover */
+    /* Default opacity (fully visible) */
+    opacity: 0.7; /* Start slightly transparent to match muted text */
+  }
+
+  /* Apply hover effect via opacity */
+  .social-icons a:hover .social-icon-img {
+    opacity: 1; /* Fully visible on hover */
+  }
+
+  /* Remove color/font-size styling from the anchor, as it doesn't affect the img */
+  .social-icons a {
+    display: inline-block; /* Ensure anchor wraps image correctly */
+    line-height: 0; /* Prevent extra space */
+    /* No color transition needed here */
+  }
+
+  /* --- Responsive Styles --- */
+  @media (max-width: 600px) {
+    /* Adjust icon size on mobile */
+    .social-icon-img {
+      width: 20px; /* Slightly smaller */
+      height: 20px;
+    }
+
+    /* Adjust copyright text size */
+    .copyright-text {
+      font-size: 0.85em; /* Smaller font for copyright on mobile */
+      /* Optional: adjust line-height if needed */
+      /* line-height: 1.3; */
+    }
+  }
+
+  /* Optional: Slightly increase icon opacity in dark mode if they appear too dim */
+  /* html[data-theme='dark'] .social-icon-img {
+     opacity: 0.8;
+  }
+  html[data-theme='dark'] .social-icons a:hover .social-icon-img {
+     opacity: 1.0;
+  } */
+</style>

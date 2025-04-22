@@ -1,0 +1,157 @@
+---
+const currentDate = new Date().toISOString().slice(0, 10); // Get current date
+
+// Import the raw SVG content (Astro feature)
+import batmanIcon from "../../public/icons/batman.svg?raw";
+import supermanIcon from "../../public/icons/superman.svg?raw";
+---
+
+<header class="app-header">
+  <div class="header-title">>Hello world!</div>
+  <nav class="header-nav">
+    <span class="button-base last-sync">
+      <span class="sync-dot"></span> LAST SYNC {currentDate}
+    </span>
+
+    {/* Theme Toggle Button */}
+    <button
+      id="theme-toggle-button"
+      type="button"
+      class="button-base theme-toggle"
+      title="Toggle light/dark theme"
+      aria-label="Toggle light/dark theme"
+      aria-live="polite"
+    >
+      {/* Wrap Fragment in a span and move classes to the span */}
+      <span class="theme-icon icon-light">
+        <Fragment set:html={supermanIcon} />
+      </span>
+      <span class="theme-icon icon-dark">
+        <Fragment set:html={batmanIcon} />
+      </span>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .app-header {
+    background-color: var(--color-container-bg); /* Use variable */
+    border-bottom: var(--border-default); /* Use variable */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .header-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    white-space: nowrap;
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .last-sync {
+    background-color: var(--color-sync-bg); /* Use variable */
+    border-color: var(
+      --color-accent-medium
+    ); /* Use variable (medium green for border) */
+    color: var(--color-text); /* Use main text color */
+    cursor: default; /* Not clickable */
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85em;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  .last-sync:hover {
+    background-color: var(--color-sync-hover-bg); /* Use variable */
+  }
+
+  .sync-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent-high); /* Dark green dot */
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* --- Theme Toggle Button Styles --- */
+  .theme-toggle {
+    background-color: var(--color-button-bg);
+    border: var(--border-default);
+    color: var(--color-text);
+    padding: 0.3rem; /* Adjust padding to fit icon */
+    line-height: 0; /* Prevent extra button height */
+    border-radius: 4px; /* Optional: slightly rounded corners */
+    /* Ensure it aligns nicely with other buttons */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    overflow: hidden; /* Hide parts of SVG if they overflow */
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--color-button-hover-bg); /* Match button hover */
+  }
+
+  /* Target the SPAN now */
+  .theme-toggle .theme-icon {
+    display: inline-flex; /* Make span behave like inline block */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Span fills the button area */
+    height: 100%;
+  }
+
+  /* Target the SVG *inside* the span */
+  .theme-toggle .theme-icon svg {
+    width: 20px; /* Control SVG size */
+    height: 20px;
+    fill: currentColor; /* Make SVG inherit button text color */
+  }
+
+  /* Show/hide the SPAN based on theme */
+  html:not([data-theme="dark"]) .theme-toggle .icon-dark {
+    display: none;
+  }
+  html[data-theme="dark"] .theme-toggle .icon-light {
+    display: none;
+  }
+
+  /* --- Responsive Styles --- */
+  @media (max-width: 600px) {
+    .app-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header-title {
+      margin-bottom: 0.5rem;
+      font-size: 1em;
+    }
+    .header-nav {
+      width: 100%;
+      justify-content: flex-start;
+      /* Optionally add wrap if buttons might still overflow */
+      /* flex-wrap: wrap; */
+    }
+    /* Ensure toggle button aligns correctly */
+    .theme-toggle {
+      margin-left: auto; /* Push toggle to the right in mobile view */
+      /* Or keep it left: remove margin-left */
+    }
+    .last-sync {
+      flex-grow: 1;
+    }
+  }
+</style>

@@ -1,0 +1,153 @@
+/* --- CSS Variables --- */
+:root {
+  /* --- Light Theme (Default) --- */
+  --font-mono: 'Source Code Pro', 'Courier New', Courier, monospace;
+  --font-main: var(--font-mono);
+
+  --color-bg: #f4f4f4;           /* Light grey background */
+  --color-container-bg: #ffffff; /* White for content boxes */
+  --color-border: #cccccc;       /* Medium grey border */
+  --color-text: #333333;         /* Dark grey text */
+  --color-text-muted: #777777;   /* Lighter grey text */
+  --color-accent-low: #a3e6b6;    /* Light green */
+  --color-accent-medium: #4ade80; /* Medium green */
+  --color-accent-high: #16a34a;   /* Dark green */
+  --color-button-bg: #f9f9f9;     /* Button Background */
+  --color-button-hover-bg: #e8e8e8;
+  --color-sync-bg: #e0fbe0;
+  --color-sync-hover-bg: #d0f8d0;
+  --color-icon-default: var(--color-text-muted);
+  --color-icon-hover: var(--color-text);
+
+  --border-width: 1px;
+  --border-style: solid;
+  --border-default: var(--border-width) var(--border-style) var(--color-border);
+}
+
+/* --- Dark Theme Overrides --- */
+/* We use a data-attribute on <html> for the theme */
+html[data-theme='dark'] {
+  --color-bg: #1a1a1a;           /* Even darker background */
+  --color-container-bg: #2a2a2a; /* Slightly lighter container */
+  --color-border: #4d4d4d;       /* More visible border */
+  --color-text: #e8e8e8;         /* Brighter off-white text (not pure white) */
+  --color-text-muted: #a0a0a0;   /* Lighter muted text */
+
+  /* Accents - Keep or adjust if needed */
+  --color-accent-low: #3a5a4a;   /* Darker, less saturated green */
+  --color-accent-medium: #4ade80; /* Keep medium green for contrast */
+  --color-accent-high: #16a34a;  /* Keep dark green for contrast */
+
+    /* Buttons */
+  --color-button-bg: #3d3d3d;     /* Darker button background */
+  --color-button-hover-bg: #4f4f4f; /* Clearer hover state */
+
+  /* Sync Button specific */
+  --color-sync-bg: var(--color-accent-low); /* Use the darker green background */
+  --color-sync-hover-bg: #4a6a5a;  /* Slightly lighter green hover */
+
+  /* Icons */
+  --color-icon-default: var(--color-text-muted); /* Uses #a0a0a0 */
+  --color-icon-hover: var(--color-text);       /* Uses #e8e8e8 */
+}
+
+/* --- Reset & Base Styles --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth theme transitions */
+}
+
+html {
+  font-size: 16px;
+  color-scheme: light dark; /* Indicate support for both modes to browser */
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg); /* Use variable */
+  color: var(--color-text);       /* Use variable */
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Layout --- */
+.page-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  border: var(--border-default);  /* Use variable */
+  background-color: var(--color-container-bg); /* Use variable */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header, footer {
+    padding: 0.75rem 1rem;
+    border-bottom: var(--border-default);
+    background-color: var(--color-container-bg); /* Use variable */
+}
+header { /* Specific header styles if needed */ }
+footer {
+    border-bottom: none;
+    border-top: var(--border-default);
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--color-text-muted); /* Use variable */
+}
+
+.main-content {
+  padding: 1.5rem 1rem;
+  flex-grow: 1;
+}
+
+/* --- Utility Classes --- */
+.text-muted {
+  color: var(--color-text-muted); /* Use variable */
+}
+
+.button-base {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border: var(--border-default); /* Use variable */
+    background-color: var(--color-container-bg); /* Use variable */
+    color: var(--color-text); /* Ensure button text uses theme color */
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.9em;
+    text-align: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease; /* Keep specific transitions */
+}
+
+.button-base:hover {
+    background-color: var(--color-button-hover-bg); /* Use variable */
+    border-color: var(--color-text-muted); /* Adjust hover border if needed */
+}
+
+/* Update other components (LinkButton, Header specific styles) to use variables */
+/* Example for LinkButton: */
+/* In LinkButton.astro's <style> */
+/* .link-button { background-color: var(--color-button-bg); border: var(--border-default); } */
+/* .link-button:hover { background-color: var(--color-button-hover-bg); border-color: #a0a0a0; } */
+
+/* Example for Header: */
+/* In Header.astro's <style> */
+/* .last-sync { background-color: var(--color-sync-bg); border-color: var(--color-accent-medium); } */
+/* .last-sync:hover { background-color: var(--color-sync-hover-bg); } */
+/* .sync-dot { background-color: var(--color-accent-high); } */
+
+/* Example for Footer icons: */
+/* In Footer.astro's <style> */
+/* .social-icon-img { ... } */
+/* .social-icons a { color: var(--color-icon-default); } */
+/* .social-icons a:hover { color: var(--color-icon-hover); } */ /* Use color for inline SVG, opacity for img */

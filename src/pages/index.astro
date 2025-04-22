@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LinkButton from "../components/LinkButton.astro";
+
+// --- Define an interface for your link objects ---
+interface Link {
+  href: string;
+  text: string;
+  target?: "_blank" | "_self"; // Use the same specific type as the component prop
+}
+
+// --- Type your links array using the interface ---
+const links: Link[] = [
+  { href: "https://andresmit.co.za", text: "My Portfolio Website" }, // Default target (_blank) will be applied by LinkButton
+  { href: "https://budget.andresmit.co.za", text: "BudgetTracker" }, // Default target (_blank)
+  { href: "mailto:info@andresmit.co.za", text: "Contact Me", target: "_self" }, // Explicitly "_self"
+];
+---
+
+<BaseLayout title="127.0.0.1">
+  {/* --- Profile Picture Section --- */}
+  <div class="profile-picture-container">
+    <img
+      src="/images/me-in-pixels.png"
+      alt="Pixel art profile picture of André Smit"
+      width="140"
+      height="140"
+      class="profile-picture"
+    />
+  </div>
+
+  <div class="profile-section" style="text-align: center; margin-bottom: 2rem;">
+    <h2 style="margin-bottom: 0.2rem;">André Smit</h2>
+    <p class="text-muted">Problem Solver</p>
+  </div>
+
+  <div class="links-container">
+    {
+      links.map((link) => (
+        // Now TypeScript knows link.target is compatible
+        <LinkButton href={link.href} text={link.text} target={link.target} />
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  /* Center the picture container */
+  .profile-picture-container {
+    text-align: center; /* Center the inline-block image */
+    margin-bottom: 1rem; /* Space below the picture */
+  }
+
+  .profile-picture {
+    display: inline-block; /* Allow text-align center to work */
+
+    /* Crucial for Pixel Art: Prevent blurring */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges; /* Fallback for older browsers */
+
+    /* Ensure it respects theme background */
+    background-color: var(--color-container-bg);
+  }
+
+  /* Add any page-specific styles if needed */
+  .links-container {
+    /* Styles for the container holding all link buttons */
+  }
+</style>
