@@ -1,5 +1,7 @@
 ---
 const currentYear = new Date().getFullYear();
+import githubIcon from "../../public/icons/github.svg";
+import linkedinIcon from "../../public/icons/linkedin.svg";
 ---
 
 <footer>
@@ -13,7 +15,13 @@ const currentYear = new Date().getFullYear();
       rel="noopener noreferrer"
       title="GitHub"
     >
-      <img src="/icons/github.svg" alt="GitHub Icon" class="social-icon-img" />
+      <img
+        src={githubIcon.src}
+        width="24"
+        height="24"
+        alt="GitHub Icon"
+        class="social-icon-img"
+      />
     </a>
     <a
       href="https://www.linkedin.com/in/andrezsmit/"
@@ -22,7 +30,9 @@ const currentYear = new Date().getFullYear();
       title="LinkedIn"
     >
       <img
-        src="/icons/linkedin.svg"
+        src={linkedinIcon.src}
+        width="24"
+        height="24"
         alt="LinkedIn Icon"
         class="social-icon-img"
       />

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LinkButton from "../components/LinkButton.astro";
+import profilePic from "../../public/images/me-in-pixels.png";
 
 // --- Define an interface for your link objects ---
 interface Link {
@@ -21,7 +22,7 @@ const links: Link[] = [
   {/* --- Profile Picture Section --- */}
   <div class="profile-picture-container">
     <img
-      src="/images/me-in-pixels.png"
+      src={profilePic.src}
       alt="Pixel art profile picture of André Smit"
       width="140"
       height="140"
