@@ -1,48 +1,88 @@
-# Astro Starter Kit: Basics
+# 🚀 My Linktree Clone - Dev Links Hub
 
-```sh
-npm create astro@latest -- --template basics
-```
+[![Deploy to GitHub Pages](https://github.com/iiSmitty/my-linktree-clone/actions/workflows/deploy.yml/badge.svg)](https://github.com/iiSmitty/my-linktree-clone/actions/workflows/deploy.yml)
+[![GitHub Pages](https://img.shields.io/badge/Hosted%20On-GitHub%20Pages-blueviolet?logo=github)](https://linktr.andresmit.co.za)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+A minimalist, Linktree-inspired landing page to consolidate important developer links, built with Astro and styled with a retro/terminal aesthetic.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live Demo:** [linktr.andresmit.co.za](https://linktr.andresmit.co.za)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+---
 
-## 🚀 Project Structure
+## ✨ Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Clean & Minimalist:** Focuses on presenting links clearly.
+- **Retro Aesthetic:** Inspired by terminal interfaces and classic dev tools.
+- **Responsive Design:** Adapts cleanly to mobile, tablet, and desktop screens.
+- **Dark/Light Mode:** Persistent theme toggle using CSS variables and localStorage.
+- **Pixel Art Ready:** Designed to nicely incorporate pixel art profile pictures.
+- **Fast & Modern:** Built with [Astro](https://astro.build/) for excellent performance.
+- **Easy Configuration:** Simple to update links and personal information.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🛠️ Tech Stack
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** CSS with CSS Variables
+- **Interactivity:** Vanilla JavaScript
+- **Deployment:** GitHub Actions & GitHub Pages
 
-## 🧞 Commands
+## 🚀 Getting Started
 
-All commands are run from the root of the project, from a terminal:
+To run this project locally:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+1.  **Clone the repository:**
 
-## 👀 Want to learn more?
+    ```bash
+    git clone https://github.com/iiSmitty/my-linktree-clone.git
+    cd my-linktree-clone
+    ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open your browser to `http://localhost:4321` (or the port specified in the terminal).
+
+## 🔧 Configuration
+
+Customizing the site for your own use is straightforward:
+
+- **Links:** Edit the `links` array within the frontmatter (`---` block) of `src/pages/index.astro`.
+- **Profile Info:** Update your name and title/subtitle in `src/pages/index.astro`.
+- **Profile Picture:**
+  - Replace the image file at `public/images/me-in-pixels.png` with your own picture (ideally square, pixel art looks great!).
+  - Update the `alt` text for the image in `src/pages/index.astro`.
+  - _Note: Currently uses standard `<img>` tags due to a workaround, not Astro's `<Image>` component._
+- **Social Media Links (Footer):**
+  - Update the `href` attributes for the GitHub/LinkedIn links in `src/components/Footer.astro`.
+  - Replace the icon images in `public/icons/` if needed and update the `src` attribute in `src/components/Footer.astro`.
+- **Theme Toggle Icons (Header):**
+  - Replace the SVG files in `public/icons/` (e.g., `batman.svg`, `superman.svg`).
+  - Update the corresponding import paths in `src/components/Header.astro` if you change filenames.
+- **Custom Domain:** If deploying elsewhere or changing the domain, update `site` and potentially `base` (if needed) in `astro.config.mjs`.
+
+## 🌐 Deployment
+
+This site is automatically deployed to [GitHub Pages](https://pages.github.com/) via [GitHub Actions](https://github.com/features/actions).
+
+- **Source:** The deployment workflow is defined in `.github/workflows/deploy.yml`.
+- **Trigger:** Pushing to the `main` branch triggers a build and deployment.
+- **Configuration:** The site is configured in `astro.config.mjs` to deploy to the custom domain `linktr.andresmit.co.za`.
+
+## 🙏 Inspiration & Credits
+
+The visual design and core layout concept were heavily inspired by the clean, retro aesthetic of [MarioDev's personal site](https://mariodev.xyz/). Special thanks to Mario for the great design!
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](license.txt) file for details.
+
+---
+
+_Feel free to fork, modify, and use for your own link hub!_
