@@ -5,9 +5,36 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title = "MarioDev Links" } = Astro.props;
+// --- Default values ---
+const defaultTitle = "127.0.0.1";
+const defaultDescription =
+  "A retro-style, minimalist landing page for dev links — built with Astro, with dark/light modes.";
+const defaultOgImage = "https://i.imgur.com/J5anI4Y.png";
+
+// --- Get values from props or use defaults ---
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  ogImage = defaultOgImage,
+} = Astro.props;
+
+// --- Get the canonical URL for the current page ---
+const canonicalURL = Astro.url.href;
+
+// --- Determine the final absolute OG image URL ---
+let absoluteOgImage = ogImage.startsWith("http") ? ogImage : defaultOgImage;
+// A more robust check if you might pass relative paths via props:
+if (ogImage && ogImage.startsWith("/") && Astro.site) {
+  absoluteOgImage = new URL(ogImage, Astro.site).href;
+} else if (ogImage && ogImage.startsWith("http")) {
+  absoluteOgImage = ogImage; // Use the absolute URL passed in props
+} else {
+  absoluteOgImage = defaultOgImage; // Fallback to default
+}
 ---
 
 <!doctype html>
@@ -17,6 +44,18 @@ const { title = "MarioDev Links" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    {/* --- SEO and Social Meta Tags --- */}
+    <meta name="description" content={description} />
+
+    {/* --- Open Graph (Facebook, LinkedIn, etc.) --- */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:type" content="website" />
+
+    {/* --- Fonts --- */}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,6 +67,7 @@ const { title = "MarioDev Links" } = Astro.props;
       rel="stylesheet"
     />
 
+    {/* --- Theme Script --- */}
     <script is:inline>
       const STORAGE_KEY = "theme";
       const applyTheme = (theme) => {
